@@ -11,7 +11,7 @@ rm -rf vendor/xiaomi/sm6150-common
 rm -rf hardware/xiaomi
 
 # Initialize ROM manifest
-repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 15 -g default,-mips,-darwin,-notdefault
+repo init -u https://github.com/VoltageOS/manifest.git -b 15 --git-lfs
 
 # Sync the repo with force to ensure a clean sync
 /opt/crave/resync.sh
@@ -20,24 +20,21 @@ repo init --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/man
 # rm -rf frameworks/native
 
 # cloning device tree
-git clone https://github.com/InfinityA15/device_xiaomi_mojito.git --depth 1 -b 15 device/xiaomi/mojito
-git clone https://github.com/InfinityA15/android_device_xiaomi_sm6150-common.git --depth 1 -b 15 device/xiaomi/sm6150-common
+git clone https://github.com/VoltA155/device_xiaomi_mojito.git --depth 1 -b 15 device/xiaomi/mojito
+git clone https://github.com/VoltA155/android_device_xiaomi_sm6150-common.git --depth 1 -b 15 device/xiaomi/sm6150-common
 
 # cloning kernel tree
-git clone https://github.com/InfinityA15/kernel_xiaomi_mojito.git --depth 1 -b inline-rom kernel/xiaomi/mojito
+git clone https://github.com/VoltA155/kernel_xiaomi_mojito.git --depth 1 -b inline-rom kernel/xiaomi/mojito
 
 # cloning vendor tree
 git clone https://gitlab.com/sachinbarange86/android_vendor_xiaomi_mojito.git --depth 1 -b 14 vendor/xiaomi/mojito
 git clone https://gitlab.com/sachinbarange86/android_vendor_xiaomi_sm6150-common.git --depth 1 -b 14 vendor/xiaomi/sm6150-common
 
 # cloning hardware tree
-git clone https://github.com/InfinityA15/android_hardware_xiaomi.git --depth 1 -b mojito hardware/xiaomi
+git clone https://github.com/VoltA155/android_hardware_xiaomi.git --depth 1 -b mojito hardware/xiaomi
 
 # Set up the build environment
 . build/envsetup.sh
 
 # Choose the target device
-lunch infinity_mojito-userdebug
-
-# Build the ROM (use mka bacon for a full build)
-mka bacon
+brunch mojito
